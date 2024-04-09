@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Знакомство с Vue</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#" @click.prevent="page = 'index'">App</a>
+
+            <div class="navbar-collapse">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" @click.prevent="openPage('index')" :class="page === 'index' ? 'active' : ''">Главная</a>
+                    </li>
+                    <li class="nav-item" v-if="page !== 'profile' ">
+                        <a class="nav-link" href="#" @click.prevent="openPage('login')" :class="page === 'login' ? 'active' : ''">Войти</a>
+                    </li>
+                    <li class="nav-item" v-if="page == 'profile' ">
+                        <a class="nav-link" href="#" @click.prevent="openPage('index')" :class="page === 'profile' ? 'active' : ''">Выйти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Страница входа -->
+    <div class="container py-5" v-if="page === 'index' ">
+        <h2 class="mb-4">Наши услуги</h2>
+
+        <div class="row">
+
+            <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-4" v-for="service in services" key = "service.id">
+                <div class="card">
+                    <img :src="service.image" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.name }}</h5>
+                        <p class="card-text">{{ service.description }}</p>
+                        <a href="#" class="btn btn-primary">Узнать подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ниже страница логина -->
+    <div class="container py-5" v-if="page === 'login' ">
+        <h2 class="mb-4">Войдите</h2>
+
+        <form @submit.prevent="openPage('profile')">
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailInput">
+            </div>
+            <div class="mb-3">
+                <label for="passwordInput" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="passwordInput">
+            </div>
+            <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
+    </div>
+    <!-- ниже страница профиля -->
+    <div class="container py-5" v-if="page === 'profile' ">
+        <h2 class="mb-4">Добро пожаловать, username!</h2>
+
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus dicta dignissimos doloremque enim eos
+            illo, ipsum labore magnam magni maxime minima nam nulla placeat quasi qui soluta suscipit, tempora ullam,
+            vero vitae voluptas voluptatem. Delectus fugiat nam necessitatibus nihil nobis optio quaerat quos tempora
+            voluptates! Ab aliquid at blanditiis commodi delectus dignissimos earum error et fugit inventore ipsam
+            laboriosam laborum magni maxime minus molestiae molestias mollitia neque non numquam obcaecati odit, omnis
+            perferendis quaerat quia quo quod ratione repellat rerum sapiente sit soluta tempora unde ut vero vitae
+            voluptate. A aspernatur debitis dolorem officiis provident quaerat vel voluptate? Amet consectetur delectus
+            deserunt est hic incidunt molestias nulla numquam provident quo? Ab accusantium dolorem dolores ducimus
+            earum eius fugiat hic, magni molestias mollitia nobis quaerat quasi quidem quis ratione repellat repudiandae
+            vero voluptatibus. Blanditiis commodi error laudantium nulla! Alias asperiores assumenda dicta dolorum, ea
+            eaque fugiat in, ipsa, neque nihil pariatur provident quo quos saepe sequi sint sit. Architecto blanditiis
+            eius eos, est eveniet, fugit id iure laudantium nihil, numquam officiis quae ratione rem sit tempora tenetur
+            voluptatibus. Consequuntur culpa dolorem impedit nostrum quisquam ratione rem! Alias aut blanditiis
+            doloribus iusto labore laudantium non officiis porro, sapiente veniam. Cum nisi omnis reiciendis sint
+            tempore? Dolorem eum ipsam nihil optio ullam. Accusamus commodi deserunt dolor id magnam possimus! Adipisci
+            dolorem itaque nam?
+        </p>
+    </div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="assets/js/main.js"></script>
+</div>
+</body>
+</html>
